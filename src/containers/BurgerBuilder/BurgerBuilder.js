@@ -27,6 +27,7 @@ class BurgerBuilder extends Component{
     }
 
     componentDidMount() {
+        console.log(this.props);
         axios.get('/ingredients.json')
             .then(response => {
                 this.setState({ingredients: response.data})
@@ -93,7 +94,7 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler = () => {
         // alert('You Continue!')
-        this.setState({loading: true});
+        /*this.setState({loading: true});
         const order = {
             ingredients: this.state.ingredients,
             price: this.state.totalPrice,
@@ -114,7 +115,9 @@ class BurgerBuilder extends Component{
             })
             .catch(() => {
                 this.setState({loading: false, purchasing: false});
-            });
+            });*/
+        // Not working after 6+ version of react-router-dom
+        this.props.history.push('/checkout');
     }
 
     render() {
