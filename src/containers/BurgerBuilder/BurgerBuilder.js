@@ -117,7 +117,18 @@ class BurgerBuilder extends Component{
                 this.setState({loading: false, purchasing: false});
             });*/
         // Not working after 6+ version of react-router-dom
-        this.props.history.push('/checkout');
+        const queryParam = [];
+
+        for(let i in this.state.ingredients){
+            queryParam.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        }
+
+        const queryString = queryParam.join('&');
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
     }
 
     render() {
