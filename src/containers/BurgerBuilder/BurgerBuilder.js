@@ -94,35 +94,13 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler = () => {
         // alert('You Continue!')
-        /*this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Nuwan Samarasinghe',
-                address: {
-                    street: 'Test Street',
-                    zipCode: '12345',
-                    country: 'Sri Lanka',
-                },
-                email: 'test@test.com',
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders.json', order)
-            .then(() => {
-                this.setState({loading: false, purchasing: false});
-            })
-            .catch(() => {
-                this.setState({loading: false, purchasing: false});
-            });*/
         // Not working after 6+ version of react-router-dom
         const queryParam = [];
 
         for(let i in this.state.ingredients){
             queryParam.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
         }
-
+        queryParam.push('price=' + this.state.totalPrice);
         const queryString = queryParam.join('&');
 
         this.props.history.push({
